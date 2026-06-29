@@ -1,0 +1,151 @@
+/* --- Root Variables Configuration --- */
+:root {
+    --bg-color: #f4f0fa;
+    --sidebar-bg: rgba(235, 228, 245, 0.85);
+    --panel-bg: rgba(255, 255, 255, 0.5);
+    --card-bg: rgba(255, 255, 255, 0.8);
+    --text-main: #2a2035;
+    --text-muted: #6b5b7b;
+    --purple-brand: #8a2be2; 
+    --search-bg: #ffffff;
+    --shortcut-bg: #ffffff;
+    --shadow: rgba(138, 43, 226, 0.15);
+}
+
+/* Hardcoded Dark Theme Selection Rules Injection */
+html[data-theme="dark"] {
+    --bg-color: #0f0a18;
+    --sidebar-bg: rgba(25, 18, 36, 0.85);
+    --panel-bg: rgba(35, 25, 50, 0.4);
+    --card-bg: rgba(45, 33, 64, 0.6);
+    --text-main: #f1eaff;
+    --text-muted: #a89cb8;
+    --purple-brand: #c38fff; 
+    --search-bg: #221830;
+    --shortcut-bg: #2d2040;
+    --shadow: rgba(0, 0, 0, 0.45);
+}
+
+html[data-theme="light"] {
+    --bg-color: #f4f0fa;
+    --sidebar-bg: rgba(235, 228, 245, 0.85);
+    --panel-bg: rgba(255, 255, 255, 0.5);
+    --card-bg: rgba(255, 255, 255, 0.8);
+    --text-main: #2a2035;
+    --text-muted: #6b5b7b;
+    --purple-brand: #8a2be2; 
+    --search-bg: #ffffff;
+    --shortcut-bg: #ffffff;
+    --shadow: rgba(138, 43, 226, 0.15);
+}
+
+/* System Automatic Scheme Interfacing Rules */
+@media (prefers-color-scheme: dark) {
+    html[data-theme="system"] {
+        --bg-color: #0f0a18;
+        --sidebar-bg: rgba(25, 18, 36, 0.85);
+        --panel-bg: rgba(35, 25, 50, 0.4);
+        --card-bg: rgba(45, 33, 64, 0.6);
+        --text-main: #f1eaff;
+        --text-muted: #a89cb8;
+        --purple-brand: #c38fff; 
+        --search-bg: #221830;
+        --shortcut-bg: #2d2040;
+        --shadow: rgba(0, 0, 0, 0.45);
+    }
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+body { background: var(--bg-color); color: var(--text-main); display: flex; height: 100vh; overflow: hidden; transition: background 0.3s, color 0.3s; }
+
+/* --- Sidebar --- */
+.opera-sidebar {
+    width: 70px; background: var(--sidebar-bg); backdrop-filter: blur(20px);
+    border-right: 1px solid rgba(138, 43, 226, 0.15); display: flex; flex-direction: column;
+    align-items: center; padding: 20px 0; gap: 20px; z-index: 10; justify-content: flex-start;
+}
+.sidebar-links-container { display: flex; flex-direction: column; gap: 18px; width: 100%; align-items: center; }
+.sidebar-item-wrapper { position: relative; width: 42px; height: 42px; }
+
+.sidebar-icon {
+    width: 42px; height: 42px; border-radius: 12px; background: var(--card-bg);
+    display: flex; align-items: center; justify-content: center; font-size: 20px;
+    cursor: pointer; box-shadow: 0 4px 6px var(--shadow); transition: transform 0.2s, border-color 0.2s;
+    text-decoration: none; color: inherit;
+}
+.sidebar-icon:hover { transform: scale(1.08); border: 2px solid var(--purple-brand); }
+.action-btn { background: rgba(138, 43, 226, 0.1); border: 1px dashed var(--purple-brand); font-size: 16px; margin-top: auto; }
+
+/* Mini Edit/Delete Toolbar on hover */
+.item-control-overlay {
+    position: absolute; top: -5px; right: -5px; background: #ff3b30; color: white;
+    font-size: 9px; width: 15px; height: 15px; border-radius: 50%; display: none;
+    align-items: center; justify-content: center; cursor: pointer; font-weight: bold;
+}
+.sidebar-item-wrapper:hover .item-control-overlay { display: flex; }
+
+/* --- Main Layout View --- */
+.main-container { flex: 1; display: flex; flex-direction: column; align-items: center; padding: 40px; position: relative; }
+.top-section { width: 100%; max-width: 650px; display: flex; flex-direction: column; align-items: center; margin-top: 15px; gap: 20px; }
+
+.logo-wrapper { width: 220px; height: 220px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+#browserLogo { max-width: 100%; max-height: 100%; object-fit: contain; border-radius: 16px; }
+
+.search-bar-container { width: 100%; position: relative; }
+.search-bar {
+    width: 100%; padding: 16px 25px 16px 55px; font-size: 16px; border-radius: 30px;
+    border: 2px solid transparent; background: var(--search-bg); color: var(--text-main);
+    box-shadow: 0 10px 25px var(--shadow); outline: none; transition: border-color 0.3s;
+}
+.search-bar:focus { border-color: var(--purple-brand); }
+.search-icon { position: absolute; left: 22px; top: 50%; transform: translateY(-50%); color: var(--text-muted); }
+
+/* --- Pinned Shortcuts Style (Cube-Shaped Round Layout) --- */
+.shortcuts-grid { margin-top: 40px; display: flex; gap: 22px; flex-wrap: wrap; justify-content: center; max-width: 750px; }
+.shortcut-card-wrapper { position: relative; }
+
+.shortcut-card {
+    width: 105px; height: 105px; background: var(--shortcut-bg); border-radius: 22px; /* Cube configuration */
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px;
+    text-decoration: none; color: var(--text-main); box-shadow: 0 8px 16px var(--shadow);
+    transition: transform 0.2s, box-shadow 0.2s, border 0.2s; border: 1px solid transparent;
+}
+.shortcut-card:hover { transform: translateY(-5px); box-shadow: 0 12px 22px var(--shadow); border: 1px solid var(--purple-brand); }
+.shortcut-icon-tile { width: 44px; height: 44px; border-radius: 12px; background: rgba(138,43,226,0.1); color: var(--purple-brand); display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 18px; }
+.shortcut-name-label { font-size: 12px; font-weight: 500; text-align: center; width: 90px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+.card-delete-btn {
+    position: absolute; top: -6px; right: -6px; background: rgba(0,0,0,0.6); color: #fff;
+    border-radius: 50%; width: 18px; height: 18px; font-size: 10px; display: none;
+    align-items: center; justify-content: center; cursor: pointer; border: 1px solid rgba(255,255,255,0.3);
+}
+.shortcut-card-wrapper:hover .card-delete-btn { display: flex; }
+
+/* --- Mac Out-of-Frame Panel --- */
+.mac-widgets-panel {
+    position: absolute; right: -275px; top: 40px; bottom: 40px; width: 300px;
+    background: var(--panel-bg); backdrop-filter: blur(30px); border-radius: 24px;
+    padding: 20px; display: flex; flex-direction: column; gap: 20px;
+    box-shadow: -10px 10px 30px var(--shadow); border: 1px solid rgba(255,255,255,0.1);
+    z-index: 100; transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.mac-widgets-panel:hover { right: 25px; }
+.widget { background: var(--card-bg); border-radius: 20px; padding: 20px; }
+.widget-title { font-size: 11px; text-transform: uppercase; color: var(--text-muted); font-weight: 700; margin-bottom: 5px; }
+.clock-time { font-size: 30px; font-weight: 700; color: var(--purple-brand); }
+.clock-date { font-size: 13px; color: var(--text-muted); }
+.storage-bar-container { background: rgba(0,0,0,0.1); height: 8px; border-radius: 4px; margin-top: 8px; overflow: hidden; }
+.storage-bar-fill { height: 100%; background: var(--purple-brand); width: 45%; }
+.storage-text { font-size: 11px; margin-top: 5px; display: flex; justify-content: space-between; }
+
+/* --- Settings Configuration Modal Interface --- */
+.modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.45); z-index: 1000; backdrop-filter: blur(4px); }
+.modal-content { background: var(--search-bg); padding: 25px; border-radius: 24px; width: 400px; margin: 8% auto; display: flex; flex-direction: column; gap: 16px; box-shadow: 0 15px 35px rgba(0,0,0,0.3); }
+.modal-content h2, .modal-content h3 { color: var(--purple-brand); }
+.control-group { display: flex; flex-direction: column; gap: 6px; }
+.control-group label { font-size: 13px; color: var(--text-main); }
+.modal-content input, .modal-content select { padding: 10px; border-radius: 10px; border: 1px solid rgba(138,43,226,0.2); background: var(--bg-color); color: var(--text-main); outline: none; }
+.modal-content button { padding: 11px; background: var(--purple-brand); color: white; border: none; border-radius: 10px; cursor: pointer; font-weight: 600; transition: opacity 0.2s; }
+.modal-content button:hover { opacity: 0.9; }
+.btn-secondary { background: rgba(138,43,226,0.15) !important; color: var(--purple-brand) !important; margin-top: 4px; }
+.btn-close { background: #555 !important; margin-top: 10px; }

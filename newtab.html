@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AqweBrowser</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="opera-sidebar">
+        <div id="sidebarItems" class="sidebar-links-container"></div>
+        <div class="sidebar-icon action-btn" id="addSidebarItem" title="Add Website to Sidebar">➕</div>
+        <div class="sidebar-icon action-btn" id="openSettings" title="AqweBrowser Settings">⚙️</div>
+    </div>
+
+    <div class="main-container">
+        <div class="top-section">
+            <div class="logo-wrapper">
+                <img id="browserLogo" src="logo.png" alt="AqweBrowser" fallback="logo.png">
+            </div>
+            
+            <form action="https://www.google.com/search" method="GET" class="search-bar-container" id="cleanSearchForm">
+                <span class="search-icon">🔍</span>
+                <input type="text" id="searchInput" class="search-bar" placeholder="Search cleanly without AI Overviews or Ads..." autocomplete="off">
+                <input type="hidden" name="udm" value="14">
+                <input type="hidden" name="q" id="hiddenQuery">
+            </form>
+        </div>
+
+        <div class="shortcuts-grid" id="shortcutsGrid"></div>
+    </div>
+
+    <div class="mac-widgets-panel">
+        <div class="widget">
+            <div class="widget-title">Clock Widget</div>
+            <div class="clock-time" id="clock">00:00:00</div>
+            <div class="clock-date" id="date">Loading...</div>
+        </div>
+        <div class="widget">
+            <div class="widget-title">Status Storage info</div>
+            <div class="storage-bar-container"><div class="storage-bar-fill"></div></div>
+            <div class="storage-text"><span>Local Sandbox</span><span style="opacity:0.6;">System Optimized</span></div>
+        </div>
+    </div>
+
+    <div class="modal" id="settingsModal">
+        <div class="modal-content">
+            <h2>AqweBrowser Customizer</h2>
+            <hr style="border-color:rgba(138,43,226,0.2); margin:10px 0;">
+            
+            <div class="control-group">
+                <label><strong>Custom Logo Image Selection (500x500 PNG):</strong></label>
+                <input type="file" id="logoUpload" accept="image/png">
+                <button id="resetLogo" class="btn-secondary">Reset to Default image</button>
+            </div>
+
+            <div class="control-group">
+                <label><strong>Color Scheme Display Theme Mode:</strong></label>
+                <select id="themeSelect">
+                    <option value="system">Follow System Preferred Mode (Auto)</option>
+                    <option value="light">Always Force Light Mode Theme</option>
+                    <option value="dark">Always Force Purple Dark Mode Theme</option>
+                </select>
+            </div>
+
+            <div class="control-group">
+                <label><strong>Add Pinned Under-Search shortcut Cube:</strong></label>
+                <input type="text" id="newCubeLabel" placeholder="Display Label Name (e.g. YouTube)">
+                <input type="text" id="newCubeUrl" placeholder="Target Destination Link (https://...)">
+                <button id="saveCubeBtn">Pin Shortcut Card</button>
+            </div>
+
+            <button id="closeSettings" class="btn-close">Save and Close Preferences</button>
+        </div>
+    </div>
+
+    <div class="modal" id="sidebarModal">
+        <div class="modal-content">
+            <h3>Add Sidebar Website Shortcut</h3>
+            <input type="text" id="sidebarLabel" placeholder="Emoji Character or Icon Label Name (e.g. 📺)">
+            <input type="text" id="sidebarUrl" placeholder="Destination Website Link Address (https://...)">
+            <button id="saveSidebarBtn">Anchor to Sidebar Frame</button>
+            <button id="closeSidebarModal" class="btn-close" style="background:#444; margin-top:5px;">Cancel</button>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

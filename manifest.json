@@ -1,0 +1,32 @@
+{
+  "manifest_version": 3,
+  "name": "AqweBrowser Ultimate Startpage",
+  "version": "1.1",
+  "description": "Custom New Tab featuring an editable sidebar, custom image logos, pinned sites, dark/light theme choices, and YouTube ad mitigation layouts.",
+  "icons": {
+    "16": "logo.png",
+    "48": "logo.png",
+    "128": "logo.png"
+  },
+  "action": {
+    "default_icon": "logo.png"
+  },
+  "permissions": [
+    "storage",
+    "declarativeNetRequest"
+  ],
+  "host_permissions": [
+    "*://*.youtube.com/*",
+    "*://*.google.com/*"
+  ],
+  "chrome_url_overrides": {
+    "newtab": "newtab.html"
+  },
+  "declarative_net_request": {
+    "rule_resources": [{
+      "id": "ads_filters",
+      "enabled": true,
+      "path": "rules.json"
+    }]
+  }
+}
